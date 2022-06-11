@@ -13,6 +13,16 @@ class ProductsController {
       console.log(error);
     }
   };
+
+  public create = async (req: Request, res: Response) => {
+    try {
+      const created = await this.productsService.create(req.body);
+
+      return res.status(201).json(created);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }
 
 export default ProductsController;

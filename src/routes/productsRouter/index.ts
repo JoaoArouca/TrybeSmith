@@ -8,4 +8,7 @@ const Products = new ProductsController();
 // GET
 productsRouter.get('/', Products.getAll);
 
+// POST
+productsRouter.post('/', Products.create);
+
 export default productsRouter;
