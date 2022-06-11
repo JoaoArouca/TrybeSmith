@@ -5,4 +5,7 @@ export interface IProducts {
   orderId?: number | null
 }
 
-export type CreateProduct = Omit<IProducts, 'id'>;
+export interface ICreateProduct {
+  name: string,
+  amount: string
+}
