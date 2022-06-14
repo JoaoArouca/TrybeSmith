@@ -9,3 +9,10 @@ export interface ICreateProduct {
   name: string,
   amount: string
 }
+
+export interface ICreateUser {
+  username: string,
+  classe: string,
+  level: number,
+  password: string
+}
