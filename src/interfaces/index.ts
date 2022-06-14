@@ -16,3 +16,9 @@ export interface ICreateUser {
   level: number,
   password: string
 }
+
+export interface IOrders {
+  id: number,
+  userId: number
+  productsIds: number[]
+}
