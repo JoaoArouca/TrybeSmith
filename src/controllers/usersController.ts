@@ -9,16 +9,16 @@ class UserController {
     try {
       const result = await this.userService.create(req.body); // retorna o token
 
-      return res.status(201).json({ result });
+      return res.status(201).json({ token: result });
     } catch (error) {
       console.log(error);
     }
   };
 
   public login = async (req: Request, res: Response) => {
-    const reuslt = await this.userService.login(req.body);
+    const result = await this.userService.login(req.body);
     
-    if (reuslt.length > 0) {
+    if (result.length > 0) {
       return res.status(200).json({ token });
     }
     
