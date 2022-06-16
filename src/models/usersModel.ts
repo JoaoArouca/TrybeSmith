@@ -17,6 +17,12 @@ class UserModel {
 
     return token;
   }
+
+  public async getAll(): Promise<ICreateUser[]> {
+    const [users] = await this.connection.execute('SELECT * FROM Trybesmith.Users');
+
+    return users as ICreateUser[];
+  }
 }
 
 export default UserModel;
