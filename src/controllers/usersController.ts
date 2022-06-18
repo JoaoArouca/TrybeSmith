@@ -17,9 +17,13 @@ class UserController {
 
   public login = async (req: Request, res: Response) => {
     const result = await this.userService.login(req.body);
-    
+    const tokenID = result.map((R) => {
+      const { id } = R;
+      return `${id}${token}`;
+    });
+
     if (result.length > 0) {
-      return res.status(200).json({ token });
+      return res.status(200).json({ token: tokenID[0] });
     }
     
     return res.status(401).json({ message: 'Username or password invalid' });

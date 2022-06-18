@@ -29,6 +29,10 @@ class OrderService {
     });
     return fullOrders;
   }
+
+  /* public async addOrder(userId: number) :Promise <IOrders[]> {
+    const newOrder = await this.model.addOrder(userId);
+  } */
 }
 
 export default OrderService;

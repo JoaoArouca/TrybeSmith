@@ -19,7 +19,7 @@ class ProductsModel {
       'INSERT INTO Trybesmith.Products (name, amount) VALUES (?, ?)',
       [name, amount],
     );
-
+    
     return created.insertId;
   }
 }

@@ -11,6 +11,7 @@ export interface ICreateProduct {
 }
 
 export interface ICreateUser {
+  id?: number,
   username: string,
   classe: string,
   level: number,
@@ -18,12 +19,13 @@ export interface ICreateUser {
 }
 
 export interface IOrders {
-  id: number,
+  id?: number,
   userId: number
-  productsIds: number[]
+  productsIds?: number[]
 }
 
 export interface ILogin {
+  id?: number,
   username: string,
   password: string,
 }
