@@ -1,5 +1,7 @@
 import { Router } from 'express';
 import OrderController from '../../controllers/ordersController';
+import validateProductId from '../../midlewares/validateProductsId';
+import Decode from '../../midlewares/validateToken';
 
 const orderRouter = Router();
 
@@ -9,6 +11,6 @@ const orders = new OrderController();
 orderRouter.get('/', orders.getAll);
 
 // POST
-orderRouter.post('/', (req, _res) => { console.log(req.headers); });
+orderRouter.post('/', Decode, validateProductId, orders.addOrder);
 
 export default orderRouter;

@@ -1,17 +1,22 @@
 import { ILogin, ICreateUser } from '../interfaces/index';
 import UserModel from '../models/usersModel';
 import connection from '../models/connection';
+import Token from '../tools/token';
 
 class UserService {
   public model: UserModel;
 
+  public token;
+
   constructor() {
     this.model = new UserModel(connection);
+    this.token = new Token();
   }
 
   public async create(user: ICreateUser): Promise <string> {
-    const token = await this.model.create(user);
-
+    const createdUserId = await this.model.create(user);
+    const token = this.token.generateToken(createdUserId.toString());
+    
     return token;
   }
 

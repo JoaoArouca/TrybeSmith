@@ -1,6 +1,5 @@
-import { Pool } from 'mysql2/promise';
+import { Pool, ResultSetHeader } from 'mysql2/promise';
 import { ICreateUser } from '../interfaces/index';
-import token from '../tools/token';
 
 class UserModel {
   public connection: Pool;
@@ -9,13 +8,13 @@ class UserModel {
     this.connection = connection;
   }
 
-  public async create({ username, classe, level, password }: ICreateUser): Promise<string> {
-    await this.connection.execute(`INSERT INTO
+  public async create({ username, classe, level, password }: ICreateUser): Promise<number> {
+    const [data] = await this.connection.execute<ResultSetHeader>(`INSERT INTO
     Trybesmith.Users (username, classe, level, password)
   VALUES
     (?, ?, ?, ?);`, [username, classe, level, password]);
-
-    return token;
+    
+    return data.insertId;
   }
 
   public async getAll(): Promise<ICreateUser[]> {

@@ -1,19 +1,24 @@
-/* import { sign, SignOptions } from 'jsonwebtoken';
+import { sign } from 'jsonwebtoken';
 
-const generateToken = (payload: string) => {
-  const secret = 'SenhaSuperSecreta';
-  const jwtConfig: SignOptions = {
-    expiresIn: '7d',
-    algorithm: 'HS256',
-  };
+class Token {
+  secret;
 
-  const token = sign(payload, secret, jwtConfig);
+  token;
 
-  return token;
-};
+  constructor() {
+    this.secret = 'secret';
 
-export default generateToken;  */
-const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG
-9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c`;
+    this.token = '';
+  }
 
-export default token;
+  public generateToken(userId: string) {
+    const { secret } = this;
+    this.token = sign({ userId }, secret, {
+      expiresIn: '7d',
+      algorithm: 'HS256',
+    });
+    return this.token;
+  }
+}
+
+export default Token;

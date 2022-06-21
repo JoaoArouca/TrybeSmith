@@ -30,9 +30,16 @@ class OrderService {
     return fullOrders;
   }
 
-  /* public async addOrder(userId: number) :Promise <IOrders[]> {
-    const newOrder = await this.model.addOrder(userId);
-  } */
+  public async addOrder(userId: string, productsId: number[]) :Promise <string> {
+    const newOrderId = await this.model.addOrder(userId);
+    
+    productsId.map((product: number) => {
+      this.products.update(newOrderId, product);
+      return 'show';
+    });
+    
+    return userId;
+  }
 }
 
 export default OrderService;

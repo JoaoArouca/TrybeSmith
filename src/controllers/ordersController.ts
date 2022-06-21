@@ -17,6 +17,18 @@ class OrderController {
       console.log(error);
     }
   };
+
+  public addOrder = async (req: Request, res: Response) => {
+    try {
+      const { productsIds, user } = req.body;
+      
+      await this.orderService.addOrder(user, productsIds);
+
+      return res.status(201).json({ userId: Number(user), productsIds });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }
 
 export default OrderController;
